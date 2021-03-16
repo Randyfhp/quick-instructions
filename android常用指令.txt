@@ -1,0 +1,7 @@
+查看系统setting值:
+	1)列出某个环境的key-value
+		adb shell setting list <secure|global|system>
+	2)获取某个key对应的value
+		adb shell settings get <secure|global|system> <KEY>
+  3)设置key-value
+    adb shell settign put <secure|global> <KEY> <VALUE>
