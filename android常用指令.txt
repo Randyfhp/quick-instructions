@@ -12,5 +12,8 @@
 	
 ##获取安桌项目依赖关系:
 	bash gradlew -q ::dependencies
+	
+##清除应用缓存
+	adb shell pm clear <packagename>
 		
 		
