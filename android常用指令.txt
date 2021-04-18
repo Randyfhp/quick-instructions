@@ -15,5 +15,41 @@
 	
 ##清除应用缓存
 	adb shell pm clear <packagename>
+	
+##关闭app
+	adb shell pm disable <packagename>
+
+##
+##apk签名相关
+	1.检查apk是否签名
+	keytool -printcert -jarfile *.apk
+	
+	2.如果apk已签名无法安装需要删除apk包里的文件
+		"/META-INF/MANIFEST.MF"
+	
+	3.重新生成keystore,使用下面批处理文件
+	set/p keystore_keystore=input keystore filename:
+	set/p keystore_alias=input keystore alias:
+	set/p keystore_validity=input keystore validity(years):
+	set/P unsign_keyalg=input keystore scret algorithm:
+
+	set/a year=%keystore_validity%*365
+	echo keytool -genkey -alias %keystore_alias% -keyalg %unsign_keyalg% -validity %year%  -keystore %keystore_keystore%
+
+	keytool -genkey -alias %keystore_alias% -keyalg %unsign_keyalg% -validity %year% -keystore %keystore_keystore%
+	
+	4.使用脚本对apk重签名，也可以在gradle 脚本中配置
+	set/p keystore_path=请输入keystore的路径：
+	set/p alias_path=请输入keystore的alias：
+	set/p unsign_path=请输入待签名apk文件路径：
+	set/p sign_path=请输入生成签名apk文件路径：
+	
+	echo jarsigner -verbose -keystore %keystore_path% -signedjar %sign_path% -digestalg SHA1 -sigalg MD5withRSA %unsign_path% %alias_path% 
+	jarsigner -verbose -keystore %keystore_path% -signedjar %sign_path% -digestalg SHA1 -sigalg MD5withRSA %unsign_path% %alias_path% 
+	pause
+	
+	
+	
+
 		
 		
