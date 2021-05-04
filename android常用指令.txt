@@ -5,6 +5,11 @@
 		adb shell settings get <secure|global|system> <KEY>
 	3)设置key-value
 		adb shell settign put <secure|global> <KEY> <VALUE>
+##打开开发者选项：
+	adb shell am start com.android.settings/.DevelopmentSettings
+
+##打开布局边界
+	setprop debug.layout true
 		
 ##开启或关闭机器的过度绘制检测:
 	adb shell setprop debug.hwui.overdraw show
