@@ -1,0 +1,30 @@
+1、创建用户和分配权限的方法
+  8.0之前： grant select, insert, update, delete on *.* to 'randy'@'localhost'
+  8.0之后： create user 'randy'@'%' identified by 'password';
+             grant all privileges on *.* to 'root'@'xxxxx.xx.xx.xx';
+             grant select, insert, update, delete on *.* to randy@'%'
+             flush privileges;
+             show grants;
+             show grants for randy@'%';
+  权限列表顺序
+  Select_priv
+  Insert_priv
+  Update_priv
+  Delete_priv
+  Create_priv
+  Drop_priv
+  Reload_priv
+  Shutdown_priv
+  Process_priv
+  File_priv
+  Grant_priv
+  References_priv
+  Index_priv
+  Alter_priv
+  
+2、取消用户权限
+revoke all on *.* from randy@'%
+
+3、查看数据库配置
+show variables;
+show variables like 'version';
